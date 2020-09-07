@@ -1,0 +1,53 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>测试demo</title>
+    <style type="text/css">
+        #execute_script {
+            margin: 20px;
+            height: 40px;
+            background-color: #00ff00;
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<button type="button" id="execute_script" value="laying_eggs">执行Shell脚本</button>
+<h3 style="margin: 20px;">脚本执行结果:</h3>
+<div id="messagecontainer" style="margin: 20px;">
+</div>
+<hr/>
+</body>
+<script type="text/javascript">
+    $(function () {
+
+    });
+    // 点击按钮
+    $('#execute_script').click(function () {
+        // 打开一个 web socket
+        var socket = new WebSocket("ws://" + window.location.host);
+        console.log(socket);
+        // 连接建立成功事件
+        socket.onopen = function () {
+            console.log('WebSocket open');
+            //发送字符: laying_eggs到服务端
+            socket.send('laying_eggs');
+        };
+        // 接收消息事件
+        socket.onmessage = function (e) {
+            if (e.data.length > 0) {
+                //打印服务端返回的数据
+                console.log('message: ' + e.data);
+                $('#messagecontainer').append(e.data + '<br/>');
+            }
+        };
+        // 关闭连接事件
+        socket.onclose = function(e) {
+            console.log("connection closed (" + e.code + ")");
+        }
+    });
+</script>
+</html>
