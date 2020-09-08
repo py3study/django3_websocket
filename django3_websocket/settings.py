@@ -121,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-K8S_URL = "https://192.168.31.74:6443"
+
 ASGI_APPLICATION = 'django3_websocket.routing.application'
 # CHANNEL_LAYERS = {
 #     'default': {
@@ -134,6 +134,5 @@ ASGI_APPLICATION = 'django3_websocket.routing.application'
 CHANNEL_LAYERS = {
      "default": {
          "BACKEND": "channels.layers.InMemoryChannelLayer",
-        # "ROUTING": "channels_example.routing.channel_routing",
      }
 }
