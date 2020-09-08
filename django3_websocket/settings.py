@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web.apps.WebConfig',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+K8S_URL = "https://192.168.31.74:6443"
+ASGI_APPLICATION = 'django3_websocket.routing.application'
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('192.168.31.196', 6379)],
+#         },
+#     },
+# }
+CHANNEL_LAYERS = {
+     "default": {
+         "BACKEND": "channels.layers.InMemoryChannelLayer",
+        # "ROUTING": "channels_example.routing.channel_routing",
+     }
+}
