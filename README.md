@@ -9,7 +9,7 @@ Django3+websocket+paramiko实现web页面实时输出
 
 # 运行方式
 `python manage.py runserver`
-
+# fuck
 
 # 文档说明
 参考链接：https://www.cnblogs.com/xiao987334176/p/13625522.html
